@@ -1,0 +1,77 @@
+
+body {
+    background-image: url("images/bg-intro-desktop.png");
+    background-color: #ff7978;
+
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+}
+
+* {
+    box-sizing:border-box;
+ }
+
+
+#content {
+
+    width: auto;
+   
+
+    margin: 50px 160px;
+}
+
+#jumbo {
+
+    display: inline-block;
+
+    
+    width: 47%;
+    margin-right: 6%;
+    color: white;
+}
+
+
+
+#rightBlock {
+
+    display: inline-block;
+
+    width: 47%;
+
+}
+
+#subscriptionInfo {
+
+    padding: 10px;
+    border-radius: 5px;
+
+    text-align: center;
+    color: white;
+
+    background: #5d54a3;
+}
+
+
+form {
+
+    margin-top: 20px;
+    padding: 1px 0;
+    border-radius: 5px;
+
+    
+    background: white;
+}
+
+
+input {
+    display: block;
+
+    width: 80%;
+    margin: 30px 10%;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+ 
+    font-family:inherit;
+    font-weight: bold;
+}
