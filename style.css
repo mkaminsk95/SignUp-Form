@@ -16,8 +16,8 @@ body {
 
     width: auto;
    
-
     margin: 50px 160px;
+   
 }
 
 #jumbo {
@@ -51,7 +51,7 @@ body {
     background: #5d54a3;
 }
 
-
+/* form styling */
 form {
 
     margin-top: 20px;
@@ -62,16 +62,56 @@ form {
     background: white;
 }
 
+form div {
+      
+    margin: 20px 10%;
+}
 
 input {
     display: block;
 
-    width: 80%;
-    margin: 30px 10%;
-    padding: 10px;
-    border: 2px solid #ccc;
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #ccc;
     border-radius: 5px;
  
     font-family:inherit;
     font-weight: bold;
+}
+
+.formBlock p {
+
+    display: none;
+
+    margin: 2px 0 3px 0;
+    text-align: right;
+
+    font-size: 10px;
+    font-weight: 600;
+    font-style: italic;
+
+    color:  hsl(0, 100%, 74%);
+}
+
+#submit input {
+
+    font-weight: 500;
+
+    color: white;
+    background-color: hsl(154, 59%, 51%);
+
+    border: none;
+}
+
+#submit p {
+    
+    text-align: center;
+    
+    font-size: 10px;
+    color: grey;
+}
+
+#submit p b {
+
+    color:  hsl(0, 100%, 74%);
 }
