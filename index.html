@@ -38,25 +38,25 @@
       <form name="registerForm" onsubmit="return validateRegisterForm()" novalidate>
 
         
-        <div class="formBlock">
-          <input type="text"      name="firstName" placeholder="First name">
-          <p id="firstNameAlert">First Name cannot be empty</p>
+        <div class="formBlock" id="firstName">
+          <input type="text"      name="firstName" placeholder="First name" oninput="inputChanged(this)">
+          <p>First Name cannot be empty</p>
         </div>
         
-        <div class="formBlock">
-          <input type="text"      name="secondName" placeholder="Last name">
-          <p id="secondNameAlert">First Name cannot be empty</p>
+        <div class="formBlock" id="secondName">
+          <input type="text"      name="secondName" placeholder="Last name" oninput="inputChanged(this)">
+          <p>First Name cannot be empty</p>
         </div>
         
-        <div class="formBlock">
-          <input type="email"     name="email" placeholder="Email address">
-          <p id="emailAlert">Email cannot be empty</p>
-          <p id="emailFormatAlert">Invalid email format</p>
+        <div class="formBlock" id="email">
+          <input type="email"     name="email" placeholder="Email address" oninput="inputChanged(this)">
+          <p>Email cannot be empty</p>
+          <p>Invalid email format</p>
         </div>
         
-        <div class="formBlock">
-          <input type="password"  name="password" placeholder="Password">
-          <p id="passwordAlert">Password cannot be empty</p>
+        <div class="formBlock" id="password">
+          <input type="password"  name="password" placeholder="Password" oninput="inputChanged(this)">
+          <p>Password cannot be empty</p>
         </div>
 
         <div id="submit">
