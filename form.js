@@ -23,10 +23,12 @@ function validateRegisterForm() {
     if (firstNameValue == "") {
         
         firstNameAlert.style.display = "block";
+        firstNameInput.style.border = "1px solid red";
         firstNameInput.style['background-image'] = "url(\"images/icon-error.svg\")";
         falseData = true;
     } else {
         firstNameAlert.style.display = "none";
+        firstNameInput.style.border = "1px solid #ccc";
         firstNameInput.style['background-image'] = "none";
     }
     
@@ -34,10 +36,12 @@ function validateRegisterForm() {
     if (secondNameValue == "") {
         
         secondNameAlert.style.display = "block";
+        secondNameInput.style.border = "1px solid red";
         secondNameInput.style['background-image'] = "url(\"images/icon-error.svg\")"; 
         falseData = true;
     } else {
         secondNameAlert.style.display = "none";
+        secondNameInput.style.border = "1px solid #ccc";
         secondNameInput.style['background-image'] = "none";
     }
         
@@ -45,19 +49,23 @@ function validateRegisterForm() {
     if (emailValue == "") {
         
         emailAlert.style.display = "block";
+        emailInput.style.border = "1px solid red";
         emailInput.style['background-image'] = "url(\"images/icon-error.svg\")"; 
         falseData = true;
     } else {
         
         emailAlert.style.display = "none";
+        emailInput.style.border = "1px solid #ccc";
         emailInput.style['background-image'] = "none"; 
 
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailValue)) { //checking if an email has a valid format
             emailFormatAlert.style.display = "block";
+            emailInput.style.border = "1px solid red";
             emailInput.style['background-image'] = "url(\"images/icon-error.svg\")"; 
             falseData = true;
         } else {
             emailFormatAlert.style.display = "none"; 
+            emailInput.style.border = "1px solid #ccc";
             emailInput.style['background-image'] = "none"; 
         }
     }
@@ -66,10 +74,12 @@ function validateRegisterForm() {
     if (passwordValue == "") {
         
         passwordAlert.style.display = "block";
+        passwordInput.style.border = "1px solid red";
         passwordInput.style['background-image'] = "url(\"images/icon-error.svg\")"; 
         falseData = true;
     } else {
         passwordAlert.style.display = "none";
+        passwordInput.style.border = "1px solid #ccc";
         passwordInput.style['background-image'] = "none"; 
     }
 
@@ -88,6 +98,7 @@ function inputChanged(input) {
     var alert = document.querySelector("#"+input.name+" p");
 
     alert.style.display = "none";
+    input.style.border = "1px solid #ccc";
     input.style['background-image'] = "none";
 
     if(input.name == "email" && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value) ) {

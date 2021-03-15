@@ -1,5 +1,6 @@
 html {
 
+    font-size: 12px;
     height: 100%;
 }
 
@@ -9,9 +10,7 @@ body {
 
     display: flex;
     height: 100%;
-
-
-    font-size: 16px;
+    
     font-family: 'Poppins', sans-serif;
 }
 
@@ -25,7 +24,6 @@ body {
     display: flex;
     align-items: center;
     margin: auto 160px;
-    
     width: auto;
    
 }
@@ -37,6 +35,8 @@ body {
     
     width: 47%;
     margin: auto 6% auto 0;
+
+    font-size: 1.5rem;
     
     color: white;
 }
@@ -90,8 +90,9 @@ input {
     width: 100%;
     padding: 14px;
     border: 1px solid #ccc;
-    border-radius: 10px;
+    border-radius: 8px;
  
+    font-size: 1rem;
     font-family:inherit;
     font-weight: bold;
 
@@ -115,7 +116,7 @@ input:focus {
     margin: 2px 0 3px 0;
     text-align: right;
 
-    font-size: 10px;
+    font-size: 0.8rem;
     font-weight: 600;
     font-style: italic;
 
@@ -137,7 +138,7 @@ input:focus {
     
     text-align: center;
     
-    font-size: 10px;
+    font-size: 0.8rem;
     color: grey;
 }
 
@@ -151,3 +152,45 @@ input:-webkit-autofill {
     /* Hack that allow overwriting autofill background */
     -webkit-box-shadow: 0 0 0px 1000px rgb(255, 255, 255) inset;
 }
+
+@media only screen and (max-width: 992px) {
+
+    html {
+
+        font-size: 10px;
+    }
+
+    #content {
+
+        margin: auto 80px;
+    }
+
+}
+
+@media only screen and (max-width: 768px) {
+
+    #content {
+
+        flex-direction: column;
+    }
+
+    #jumbo {
+        width: 85%;
+
+        text-align: center;
+        margin-right: 0;
+    }
+
+    #content {
+
+        margin: auto 10px;
+    }
+    
+    #rightBlock {
+        
+        margin-top: 40px;
+
+        width:85%;
+    }
+}
+
