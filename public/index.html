@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="style.css">
+
+  <script src="form.js"></script>
+
+  <title>Frontend Mentor | Intro component with sign up form</title>
+
+
+</head>
+<body>
+
+  <div id="content">
+    
+    <div id="jumbo">
+
+      <h1>Learn how to code by watching others</h1>
+
+      See how experienced developers solve problems in real-time.
+      Watching scripted tutorials is great, but understanding how developers think is invaluable. 
+
+
+    </div><div id="rightBlock">
+      
+      <div id="subscriptionInfo">
+
+        <b>Try it free 7 days</b> then $20/mo. thereafter
+
+      </div>
+
+      <form name="registerForm" onsubmit="return validateRegisterForm()" novalidate>
+
+        
+        <div class="formBlock" id="firstName">
+          <input type="text"      name="firstName" placeholder="First name" oninput="inputChanged(this)">
+          <p>First Name cannot be empty</p>
+        </div>
+        
+        <div class="formBlock" id="secondName">
+          <input type="text"      name="secondName" placeholder="Last name" oninput="inputChanged(this)">
+          <p>First Name cannot be empty</p>
+        </div>
+        
+        <div class="formBlock" id="email">
+          <input type="email"     name="email" placeholder="Email address" oninput="inputChanged(this)">
+          <p>Email cannot be empty</p>
+          <p>Invalid email format</p>
+        </div>
+        
+        <div class="formBlock" id="password">
+          <input type="password"  name="password" placeholder="Password" oninput="inputChanged(this)">
+          <p>Password cannot be empty</p>
+        </div>
+
+        <div id="submit">
+          <input type="submit" formmethod="post" value="CLAIM YOUR FREE TRIAL">
+          <p>By clicking the button, you are agreeing to our <b>Terms and Services</b></p>
+        </div>
+        
+
+        
+
+
+      </form>
+  
+    </div>
+  
+  </div>
+
+</body>
+</html>

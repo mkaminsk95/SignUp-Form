@@ -1,0 +1,22 @@
+{
+  "name": "signup-form",
+  "version": "1.0.0",
+  "description": "Simple SignUp-Form.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mkaminsk95/SignUp-Form.git"
+  },
+  "author": "Michał Kamiński",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mkaminsk95/SignUp-Form/issues"
+  },
+  "homepage": "https://github.com/mkaminsk95/SignUp-Form#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
