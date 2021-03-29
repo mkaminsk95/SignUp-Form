@@ -38,12 +38,12 @@ const server = http.createServer((req, res) => {
   let filePath = path.join(
     __dirname,
     "public",
-    req.url === "/" ? "index.html" : req.url
+    req.url === "/" ? "login.html" : req.url
   );
    
   // Extension of file
   let extname = path.extname(filePath);
-   // Initial content type
+  // Initial content type
   let contentType = "text/html";
     
   
@@ -66,7 +66,7 @@ const server = http.createServer((req, res) => {
       break;
   }
   
-  // Check if contentType is text/html but no .html file extension
+  // Check if contentType is text/html but no .html 3file extension
   if (contentType == "text/html" && extname == "") filePath += ".html";
   
   // log the filePath
@@ -101,6 +101,6 @@ const server = http.createServer((req, res) => {
 
 });
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 
 server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
