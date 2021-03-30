@@ -27,11 +27,14 @@
             
             
             <div class="formBlock" id="email">
-                <input type="email" name="email" placeholder="Email address">
+                <input type="email" name="email" placeholder="Email address" oninput="inputChanged(this)">
+                <p>Email cannot be empty</p>
+                <p>Invalid email format</p>
             </div>
             
             <div class="formBlock" id="password">
-                <input type="password" name="password" placeholder="Password">
+                <input type="password" name="password" placeholder="Password" oninput="inputChanged(this)">
+                <p>Password cannot be empty</p>
             </div>
             
             <div id="submit">
@@ -40,7 +43,7 @@
             
         </form>
         
-        <p><span>OR</span></p>
+        <p id="orParagraph"><span>OR</span></p>
 
         <a href="register.html">REGISTER</a>
     </div>
