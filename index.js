@@ -64,9 +64,12 @@ const server = http.createServer((req, res) => {
     case ".jpg":
       contentType = "image/jpg";
       break;
+    case ".svg":
+      contentType = "image/svg+xml";
+      break;  
   }
   
-  // Check if contentType is text/html but no .html 3file extension
+  // Check if contentType is text/html but no .html file extension
   if (contentType == "text/html" && extname == "") filePath += ".html";
   
   // log the filePath
@@ -101,6 +104,6 @@ const server = http.createServer((req, res) => {
 
 });
 
-const PORT = process.env.PORT || 5001;
+const PORT = process.env.PORT || 5000;
 
 server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
