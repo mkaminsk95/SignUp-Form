@@ -52,8 +52,10 @@ function validateLoginForm() {
     }
 
 
+    
+
     //deciding if form is valid
-    if(falseData == true) {
+    if(falseData == false) {
         return false;
     } else {
         return true;
@@ -76,3 +78,4 @@ function inputChanged(input) {
     }
 
 }
+
