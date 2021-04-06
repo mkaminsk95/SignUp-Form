@@ -4,12 +4,14 @@ const fs = require("fs");
 const qs = require('querystring');
 const events = require('events');
 
+const user = require('./user');
+
+
+
 
 const server = http.createServer((req, res) => {
 
-
   console.log(req.url);
-
   // Login and Register handling
   if (req.method === 'POST')
     POSTReqHandler(req, res);
@@ -19,14 +21,11 @@ const server = http.createServer((req, res) => {
 });
 
 
-
-
 function POSTReqHandler(req, res) {
-
+  
   let route = path.basename(req.url, '.html');
-
   var body = '';
-
+  
   req.on('data', function (data) {
     body += data;
     // Too much POST data, kill the connection!
@@ -35,11 +34,18 @@ function POSTReqHandler(req, res) {
       request.connection.destroy();
   });
 
-  if (route === 'register')
-    req.on('end', () => saveUser(body));
-  else if (route === 'login' || route === '')
-    req.on('end', () => checkCredentials(body, res));
 
+  if (route === 'register')
+    req.on('end', () => {
+
+      user.save(qs.decode(body));
+    });
+  else if (route === 'login' || route === '')
+    req.on('end', () => {
+
+      if (user.authenticate(qs.decode(body)))
+        createResponse('/user', res);
+    });
 }
 
 function createResponse(url, res) {
@@ -53,10 +59,8 @@ function createResponse(url, res) {
 
   // Extension of file
   let extension = path.extname(filePath);
-
   // Content type for content-type header
   let contentType = returnContentType(extension);
-
   // Check if contentType is text/html but no .html file extension
   if (contentType == "text/html" && extension == "") filePath += ".html";
 
@@ -69,7 +73,6 @@ function createResponse(url, res) {
           path.join(__dirname, "public", "404.html"),
           (err, content) => {
             throw err;
-
             res.writeHead(404, { "Content-Type": "text/html" });
             res.end(content, "utf8");
           }
@@ -81,7 +84,6 @@ function createResponse(url, res) {
       }
     } else {
       // Success
-
       res.writeHead(200, { "Content-Type": contentType });
       res.end(content, "utf8");
     }
@@ -89,9 +91,7 @@ function createResponse(url, res) {
 }
 
 function returnContentType(extension) {
-
   var contentType;
-
   switch (extension) {
     case ".js":
       contentType = "text/javascript";
@@ -115,64 +115,8 @@ function returnContentType(extension) {
       contentType = "text/html";
       break;
   }
-
   return contentType;
 }
 
-function saveUser(body) {
-
-  var usersDB;
-  var newUser = qs.decode(body);
-
-  fs.readFile('users.json', 'utf8', function readFileCallback(err, data) {
-    if (err) {
-      console.log(err);
-    } else {
-
-      usersDB = JSON.parse(data); //now it an object
-      usersDB.users.push(newUser); //add some data
-
-      json = JSON.stringify(usersDB, null, 2); //convert it back to json
-
-      fs.writeFile('users.json', json, 'utf8', (err) => {
-        if (err) {
-          console.log(err);
-        } else {
-          console.log("Data written");
-        }
-      });
-    }
-  });
-
-}
-
-function checkCredentials(body, res) {
-
-  var usersDB;
-  var credentials = qs.decode(body);
-
-  fs.readFile('users.json', 'utf8', (err, data) => {
-    if (err)
-      console.log(err);
-    else {
-
-      usersDB = JSON.parse(data);
-
-      for (let id = 0; id < usersDB.users.length; id++) {
-
-        if (usersDB.users[id].email === credentials.email && usersDB.users[id].password === credentials.password) {
-          console.log('logged in');
-          createResponse('/user', res);
-        } else {
-          console.log('false credentials');
-        }
-
-      }
-    }
-  })
-}
-
-
 const PORT = process.env.PORT || 5000;
-
 server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
