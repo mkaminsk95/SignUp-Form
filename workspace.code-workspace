@@ -2,9 +2,6 @@
 	"folders": [
 		{
 			"path": "."
-		},
-		{
-			"path": "..\\node-basic-authentication-api"
 		}
 	],
 	"settings": {}

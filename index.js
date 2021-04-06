@@ -12,16 +12,16 @@ const server = http.createServer((req, res) => {
 
   // Login and Register handling
   if (req.method === 'POST')
-    POSTReqHandler(req);
+    POSTReqHandler(req, res);
   else if (req.method === 'GET')
-    createResponse(req, res);
+    createResponse(req.url, res);
 
 });
 
 
 
 
-function POSTReqHandler(req) {
+function POSTReqHandler(req, res) {
 
   let route = path.basename(req.url, '.html');
 
@@ -35,20 +35,20 @@ function POSTReqHandler(req) {
       request.connection.destroy();
   });
 
-  if (route === 'register') 
+  if (route === 'register')
     req.on('end', () => saveUser(body));
-  else if (route === 'login') 
-    req.on('end', () => checkCredentials(body));
+  else if (route === 'login' || route === '')
+    req.on('end', () => checkCredentials(body, res));
 
 }
 
-function createResponse(req, res) {
+function createResponse(url, res) {
 
   // Build file path
   let filePath = path.join(
     __dirname,
     "public",
-    req.url === "/" ? "login.html" : req.url
+    url === "/" ? "login.html" : url
   );
 
   // Extension of file
@@ -59,9 +59,6 @@ function createResponse(req, res) {
 
   // Check if contentType is text/html but no .html file extension
   if (contentType == "text/html" && extension == "") filePath += ".html";
-
-  // log the filePath
-  //console.log(filePath);
 
   // Read File
   fs.readFile(filePath, (err, content) => {
@@ -126,55 +123,55 @@ function saveUser(body) {
 
   var usersDB;
   var newUser = qs.decode(body);
-   
+
   fs.readFile('users.json', 'utf8', function readFileCallback(err, data) {
     if (err) {
       console.log(err);
     } else {
-      
+
       usersDB = JSON.parse(data); //now it an object
       usersDB.users.push(newUser); //add some data
-      
+
       json = JSON.stringify(usersDB, null, 2); //convert it back to json
 
       fs.writeFile('users.json', json, 'utf8', (err) => {
-        if(err) {
+        if (err) {
           console.log(err);
         } else {
           console.log("Data written");
         }
-      }); 
+      });
     }
   });
 
 }
 
-function checkCredentials(body) {
+function checkCredentials(body, res) {
 
   var usersDB;
   var credentials = qs.decode(body);
 
   fs.readFile('users.json', 'utf8', (err, data) => {
-    if(err) 
+    if (err)
       console.log(err);
     else {
 
       usersDB = JSON.parse(data);
 
-      for(let id = 0; id < usersDB.users.length; id++) {
-        
+      for (let id = 0; id < usersDB.users.length; id++) {
+
         if (usersDB.users[id].email === credentials.email && usersDB.users[id].password === credentials.password) {
           console.log('logged in');
-          //createResponse();
+          createResponse('/user', res);
         } else {
           console.log('false credentials');
-         
         }
 
       }
     }
   })
 }
+
 
 const PORT = process.env.PORT || 5000;
 

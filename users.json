@@ -29,6 +29,18 @@
       "secondName": "The Pervert",
       "email": "patrickPervy@gmail.com",
       "password": "mySecretPassword2"
+    },
+    {
+      "firstName": "Michał",
+      "secondName": "asdasd",
+      "email": "asdad@d.s",
+      "password": "jhuyj"
+    },
+    {
+      "firstName": "Bartosz",
+      "secondName": "Kaluzny",
+      "email": "kaluza@gmail.com",
+      "password": "kaluza"
     }
   ]
 }

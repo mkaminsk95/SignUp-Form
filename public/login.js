@@ -55,7 +55,7 @@ function validateLoginForm() {
     
 
     //deciding if form is valid
-    if(falseData == false) {
+    if(falseData === true) {
         return false;
     } else {
         return true;
