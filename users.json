@@ -7,8 +7,8 @@
       "password": "jamnik16"
     },
     {
-      "firstName": "Michał",
-      "secondName": "kaminski",
+      "firstName": "Michal",
+      "secondName": "Kaminski",
       "email": "michal5295@gmail.com",
       "password": "qwerty"
     },
@@ -41,6 +41,12 @@
       "secondName": "Kaluzny",
       "email": "kaluza@gmail.com",
       "password": "kaluza"
+    },
+    {
+      "firstName": "Patrick",
+      "secondName": "The Pervert",
+      "email": "patrickPervy@gmail.com",
+      "password": "mySecretPassword2"
     }
   ]
 }

@@ -3,10 +3,9 @@ const path = require("path");
 const fs = require("fs");
 const qs = require('querystring');
 const events = require('events');
+const ejs = require('ejs');
 
 const user = require('./user');
-
-
 
 
 const server = http.createServer((req, res) => {
@@ -43,12 +42,16 @@ function POSTReqHandler(req, res) {
   else if (route === 'login' || route === '')
     req.on('end', () => {
 
-      if (user.authenticate(qs.decode(body)))
-        createResponse('/user', res);
+      var credentials = qs.decode(body);
+
+      let authenticationResponse = user.authenticate(credentials);
+      if (authenticationResponse)
+        createResponse('/user', res, authenticationResponse);
     });
 }
 
-function createResponse(url, res) {
+
+function createResponse(url, res, credentials) {
 
   // Build file path
   let filePath = path.join(
@@ -62,9 +65,50 @@ function createResponse(url, res) {
   // Content type for content-type header
   let contentType = returnContentType(extension);
   // Check if contentType is text/html but no .html file extension
-  if (contentType == "text/html" && extension == "") filePath += ".html";
+  
+  var firstName, secondName;
 
-  // Read File
+  if(typeof credentials !== "undefined"){
+    firstName =  credentials.firstName;
+    secondName = credentials.secondName;
+  }
+
+
+  if (extension === '.html' || extension === '') {
+    //change extension in filePath to 'esj'
+    filePath = path.join(__dirname, "public", path.basename(filePath, extension) + '.ejs');
+    renderEjs(res, filePath, contentType, {firstName: firstName, secondName: secondName});
+  } else {
+    readFile(res, filePath, contentType);
+  }
+  
+}
+
+function renderEjs(res, filePath, contentType, data) {
+  ejs.renderFile(filePath, data, null, function(err, str){
+    if(err) {
+      if (err.code == 'ENOENT') {
+        // Page not found
+        fs.readFile( path.join(__dirname, "public", "404.html"), (err, content) => {
+            //throw err;
+            res.writeHead(404, { "Content-Type": "text/html" });
+            res.end(content, "utf8");
+          });
+      } 
+      else {
+        //  Some server error
+        res.writeHead(500);
+        res.end(`Server Error: ${err.code}`);
+      }
+    }
+    else {
+      res.writeHead(200, { "Content-Type": contentType });
+      res.end(str, 'utf8');
+    }
+  });
+}
+
+function readFile(res, filePath, contentType) {
   fs.readFile(filePath, (err, content) => {
     if (err) {
       if (err.code == "ENOENT") {
@@ -111,6 +155,8 @@ function returnContentType(extension) {
     case ".svg":
       contentType = "image/svg+xml";
       break;
+    case ".ejs":
+      contentType = "text/html";
     default:
       contentType = "text/html";
       break;
